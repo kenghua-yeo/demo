@@ -1,6 +1,6 @@
 ---
 - name: Apache server installed
-  hosts: all
+  hosts: web*
   become: yes
   tasks:
   - name: Display hostname
