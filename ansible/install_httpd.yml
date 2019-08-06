@@ -25,3 +25,21 @@
         <h1>Apache is running fine</h1>
         </body>
   
+  - name: Open port 80 for http access
+    firewalld:
+      service: http
+      permanent: true
+      state: enabled
+      
+  - name: Restart the firewalld service to load in the firewall changes
+    service: 
+      name: firewalld 
+      state: restarted
+  
+  - name: Smoke test
+    action: uri url=http://{{ ansible_hostname }} return_content=yes
+    register: webpage
+
+  - fail:
+      msg: 'service is not happy'
+    when: "'Apache is running fine' not in webpage.content"
