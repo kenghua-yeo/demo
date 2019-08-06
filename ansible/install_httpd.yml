@@ -1,6 +1,6 @@
 ---
 - name: Apache server installed
-  hosts: web*
+  hosts: web[1:9]
   become: yes
   tasks:
   - name: latest Apache version installed
