@@ -1,0 +1,19 @@
+---
+- name: REMOVE Apache server
+  hosts: all
+  become: yes
+  tasks:
+  - name: Display hostname
+    debug:
+      msg: "Host Name - {{ ansible_hostname }}"
+
+  - name: STOP Apache and disabled
+    service:
+      name: httpd
+      enabled: false
+      state: stopped
+
+  - name: Remove Apache
+    yum:
+      name: httpd
+      state: absent
