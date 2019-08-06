@@ -1,8 +1,12 @@
 ---
 - name: Apache server installed
-  hosts: web1
+  hosts: all
   become: yes
   tasks:
+  - name: Display hostname
+    debug:
+      msg: "Host Name - {{ ansible_hostname }}"
+
   - name: latest Apache version installed
     yum:
       name: httpd
