@@ -1,0 +1,23 @@
+---
+- name: Apache server installed
+  hosts: web
+  become: yes
+  tasks:
+  - name: latest Apache version installed
+    yum:
+      name: httpd
+      state: latest
+  - name: Apache enabled and running
+    service:
+      name: httpd
+      enabled: true
+      state: started
+
+  - name: Ansible create file with content example
+    copy:
+      dest: "/var/www/html/index.html"
+      content: |
+        <body>
+        <h1>Apache is running fine</h1>
+        </body>
+  
