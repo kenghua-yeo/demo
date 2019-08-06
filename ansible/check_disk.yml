@@ -14,4 +14,4 @@
     - set_fact: disk_usage_ratio_s="{{ 100 * (disk_usage_ratio|float) | round(1, 'common') }}%"
                                                                                                                         
     - debug:
-        msg: "disk usage {{ disk_usage_s }} of total {{ disk_total_s }} ({{ disk_usage_ratio_s }})"
+        msg: "{{ ansible_hostname }} - disk usage {{ disk_usage_s }} of total {{ disk_total_s }} ({{ disk_usage_ratio_s }})"
